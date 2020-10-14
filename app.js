@@ -2,14 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db =  require('./models');
 const es6Renderer =  require('express-es6-template-engine');
-const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const store = new SequelizeStore({ db: db.sequelize });
-const registerRouter = require('./routes/register');
-
+const bcrypt = require('bcrypt');
 const app = express();
+
+// Route Require Section
+const registerRouter = require('./routes/register');
+const loginRouter = require('./routes/login');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -52,9 +54,8 @@ app.get('/', (req, res) => {
     });
 })
 
-app.get('/login', (req, res) => {
-    res.render
-})
+// routes for login
+app.use('/login', loginRouter);
 
 // creating register page
 app.use('/register', registerRouter);
