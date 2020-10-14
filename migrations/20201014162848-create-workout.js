@@ -14,15 +14,15 @@ module.exports = {
       },
       data: {
         allowNull: false,
-        type: Sequelize.JSON
+        type: Sequelize.JSONB
       },
       start_time: {
         allowNull: false,
-        type: Sequelize.TIME
+        type: Sequelize.DATE
       },
       end_time: {
         allowNull: false,
-        type: Sequelize.TIME
+        type: Sequelize.DATE
       },
       cal: {
         allowNull: false,
