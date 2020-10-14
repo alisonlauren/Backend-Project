@@ -27,3 +27,40 @@ app.use(express.static('./public'));
 app.engine('html', es6Renderer);
 app.set('views', 'templates');
 app.set('view engine', 'html');
+
+app.get('/', (req, res)=>{
+    res.render('home', {
+        locals:{
+            error: null,
+            title: 'GitFit'
+        },
+        partials : {
+            head: 'partials/head'
+        }
+    })
+})
+
+app.get('/register', (req, res)=>{
+    res.render('register', {
+        locals: {
+            error: null,
+            title: 'Register'
+        }
+    })
+})
+
+app.get('login', (req, res)=>{
+    res.render('login', {
+        locals: {
+            error: null,
+            title: 'Login'
+        }
+    })
+})
+
+
+
+app.listen(3000, function () {
+    console.log('Todo List API is now listening on port 3000...');
+  });
+  
