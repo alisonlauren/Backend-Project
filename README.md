@@ -15,7 +15,7 @@ What technologies did we use?
 
 Project Contributors:
 * Alison Manning [github](https://github.com/alisonlauren) [linkedIn](https://www.linkedin.com/in/alison-manning-9a25391b1/)
-* Jacky Cheung [github](https://github.com/JC-2020) [linkedIn]()
+* Jacky Cheung [github](https://github.com/JC-2020) [linkedIn](https://www.linkedin.com/in/jacky-cheung-a69768195/)
 * Peter Looney [github](https://github.com/plooney81) [linkedIn](https://www.linkedin.com/in/peter-looney-27b732166/)
 
 ## **Getting Started**
