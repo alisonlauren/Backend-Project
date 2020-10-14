@@ -2,24 +2,55 @@
 <html lang="en">
 ${head}
 <body>
+
+
+<div class="container-fluid text-center">
     <h1>Register Here</h1>
-    <p>you're one step closer to </p>
+    <p>We know you can git commit, but can you commit to your fitness? </p>
     ${ error ? `<em>${error}</em>`: ''}
-    <form action="" method="post">
-        <div>
-            <label for="Full name">Full name</label>
-            <input type="text" name="Full name" id="Full name" required>
-        </div>
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required>
-        </div>
-        <button type="submit">Register</button>
-    </form> 
+    <form action="" method="post"> 
+
+    <div>
+        <label for="Full name">Full name</label>
+        <input type="text" name="Full name" id="Full name" required>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+    </div>
+    <button type="submit">Register</button>
+</form> 
+
+<div class="row content">
+<div class="col-sm-2 sidenav">
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+</div>
+<div class="col-sm-8 text-left"> 
+    
+</div>
+<div class="col-sm-2 sidenav">
+    <div class="well">
+    <p>ADS</p>
+    </div>
+    <div class="well">
+    <p>ADS</p>
+    </div>
+</div>
+</div>
+</div> 
+
+
+
+
+
+    
+
     ${footer}
 </body>
 </html>
