@@ -21,20 +21,21 @@ module.exports = (sequelize, DataTypes) => {
     },
     data: {
       allowNull: false,
-      type: DataTypes.JSON,
+      type: DataTypes.JSONB
     },
-    start_time:{
+    start_time: {
       allowNull: false,
-      type: DataTypes.TIME,
+      type: DataTypes.DATE
     },
-    end_time:{
+    end_time: {
       allowNull: false,
-      type: DataTypes.TIME,
+      type: DataTypes.DATE
     },
-    cal:{
+    cal: {
       allowNull: false,
       type: DataTypes.INTEGER
-  }, 
+    }
+  }, {
     sequelize,
     modelName: 'Workout',
   });

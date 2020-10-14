@@ -11,14 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Workouts);
+      User.hasMany(models.Workout);
     }
   };
   User.init({
-    name: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
+      name:{
+        allowNull: false,
+        type: DataTypes.STRING
+      },
       email: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -26,9 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       }
-    }, {
+  }, {
     sequelize,
     modelName: 'User',
   });
