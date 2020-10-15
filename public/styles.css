@@ -30,3 +30,12 @@ padding: 15px;
 }
 .row.content {height:auto;} 
 }
+
+
+.input {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center; 
+}
+
