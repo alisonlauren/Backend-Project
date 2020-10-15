@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    $("#datetimepicker").datetimepicker();
+    $("#datetimepicker1").datetimepicker();
+})
+
 var cal = {
 // (A) PROPERTIES
 mName : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], // Month Names
@@ -160,7 +165,7 @@ for (var i = 0; i < 12; i++) {
     opt.value = i;
     opt.innerHTML = cal.mName[i];
     if (i==nowMth) { opt.selected = true; }
-    console.log(mth)
+    // console.log(mth)
     mth.appendChild(opt);
 }
 
