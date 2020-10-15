@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+${head}
+<body>
+
+
+<div class="container-fluid text-center">
+    <h1>Welcome to your profile, ${user.name}</h1>
+<form>
+<!-- DROP DOWN WO TYPE BUTTON -->
+<div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Which Type Of Workout?
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button">Cycling</button>
+    <button class="dropdown-item" type="button">Running</button>
+</div>
+</div>
+<!-- START TIME WO -->
+<div class="container">
+    <div class="row">
+    <div class='col-sm-6'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+    </div>
+</div>
+<!-- END TIME WO -->
+<div class="container">
+<div class="row">
+    <div class='col-sm-6'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+</div>
+</div>
+<!-- CALORIE INPUT -->
+<div>
+    <label for="calorie">Calories Burned</label>
+    <input type="integer" name="calorie" id="calorie" required>
+</div>
+<!-- MILES COMPLETED -->
+<div>
+    <label for="miles">Miles Completed</label>
+    <input type="integer" name="miles" id="miles" required>
+</div>
+<!-- SUBMIT BUTTON -->
+<div>
+<button type="button" class="btn btn-secondary btn-sm">Submit Workout</button>
+</div>
+</form>
+
+<div class="row content">
+<div class="col-sm-2 sidenav">
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+</div>
+<div class="col-sm-8 text-left"> 
+    
+</div>
+<div class="col-sm-2 sidenav">
+    <div class="well">
+    <p>ADS</p>
+    </div>
+    <div class="well">
+    <p>ADS</p>
+    </div>
+</div>
+</div>
+</div> 
+    ${footer}
+</body>
+</html>
