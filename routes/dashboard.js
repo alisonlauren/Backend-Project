@@ -6,11 +6,20 @@ const checkAuth = (req, res, next) => {
     if(req.session.user){
         next();
     }else{
-        res.redirect('/login');
+        res.render('login', {
+            locals: {
+                title: 'Login',
+                error: 'Must be logged in to access profile page'
+              },
+              partials: {
+                head: 'partials/head',
+                footer: 'partials/footer'
+              }
+        });
     }
 }
 
-router.get('/', (req, res)=>{
+router.get('/', checkAuth, (req, res)=>{
     res.render('dashboard', {
         locals: {
             user: req.session.user,
@@ -25,7 +34,30 @@ router.get('/', (req, res)=>{
 })
 
 router.post('/', (req, res)=>{
-
+    const { type, startTime, endTime, calorie, miles } = req.body;
+    if ( !type || !startTime || !endTime || !calorie || !miles){
+        res.render('dashboard', {
+            locals: {
+                error: "Please submit all required fields",
+                title: "Dashboard"
+            },
+            partials: {
+                head: "partials/head",
+                footer: "partials/footer"
+            }
+        })
+        return;
+    }
+    db.Workout.create({
+        type: type,
+        data: {
+            distance: miles
+        },
+        start_time: startTime,
+        end_time: endTime,
+        cal: calorie,
+        UserId: req.session.user.id,
+    })
 })
 
 module.exports = router;
