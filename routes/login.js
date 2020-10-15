@@ -46,7 +46,7 @@ router.post('/', (req, res)=>{
           if (matched){
             // res.send('YOU LOGGED IN')
             req.session.user = user;
-            res.redirect('/');
+            res.redirect('/dashboard');
           } else {
             res.render('login', {
               locals: {
