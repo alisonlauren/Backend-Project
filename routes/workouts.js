@@ -20,11 +20,11 @@ router.get('/', (req, res)=>{
             UserId: req.session.user.id
         }
     })
-    .then(workoutsFound =>{
-        if(!workoutsFound){
+    .then(workouts =>{
+        if(!workouts){
             res.status(404).json({error: 'No workouts found'})
         }else{
-            res.status(200).json(workoutsFound);
+            res.status(200).json(workouts);
         }
     })
     .catch(e=>{
