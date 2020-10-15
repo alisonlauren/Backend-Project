@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
     $("#datetimepicker").datetimepicker();
     $("#datetimepicker1").datetimepicker();
 })
@@ -172,6 +172,7 @@ show : function (el) {
     // (C3) ATTACH EVENT FORM
     var eForm = document.createElement("form");
     eForm.setAttribute("method", "post");
+    eForm.setAttribute("action", "");
     eForm.addEventListener("submit", cal.save);
     eForm.innerHTML = tForm;
     var container = document.getElementById("cal-event");
@@ -239,3 +240,23 @@ for (var i = nowYear-10; i<=nowYear+10; i++) {
 document.getElementById("cal-set").addEventListener("click", cal.list);
 cal.list();
 });
+
+
+let today = new Date();
+
+let twoWeeksFromNow = today.getDate() - 14;
+let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);
+console.log(fullDate)
+
+
+let currentDate = new Date().toISOString().slice(0, 10);
+console.log(currentDate);
+// Render user workouts
+axios
+    .get(`/api/workouts?startDate=${currentDate}&endDate=${fullDate}`)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(e=>{
+            console.log(e);
+        })
