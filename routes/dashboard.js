@@ -10,7 +10,7 @@ const checkAuth = (req, res, next) => {
     }
 }
 
-router.get('/', (req, res)=>{
+router.get('/', checkAuth, (req, res)=>{
     res.render('dashboard', {
         locals: {
             user: req.session.user,

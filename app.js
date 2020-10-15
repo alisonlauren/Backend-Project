@@ -64,6 +64,11 @@ app.use('/register', registerRouter);
 // dashboard routes
 app.use('/dashboard', dashboardRouter);
 
+app.get('/logout', (req, res) => {
+    req.session.user = null;
+    res.redirect('/login');
+})
+
 app.listen(3000, function () {
     console.log('Activity Tracker API....');
 });
