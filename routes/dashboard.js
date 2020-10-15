@@ -60,7 +60,17 @@ router.post('/', (req, res)=>{
         UserId: req.session.user.id,
     })
     .then(newWorkout=>{
-        res.json(newWorkout);
+        res.render('dashboard', {
+            locals: {
+                user: req.session.user,
+                title: "DashBoard",
+                error: ''
+            },
+            partials: {
+                head:"partials/head",
+                footer: "partials/footer"
+            }
+        })
     })
     .catch(e=>{
         res.status(500).json({error: "A database error occurred"});

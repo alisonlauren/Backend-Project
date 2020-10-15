@@ -13,6 +13,7 @@ const app = express();
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
+const workoutsListRouter = require('./routes/workouts');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,6 +64,9 @@ app.use('/register', registerRouter);
 
 // dashboard routes
 app.use('/dashboard', dashboardRouter);
+
+// get all workouts for a user api call
+app.use('/api/workouts', workoutsListRouter);
 
 app.get('/logout', (req, res) => {
     req.session.user = null;
