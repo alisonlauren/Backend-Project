@@ -21,7 +21,12 @@ router.post('/', (req, res)=>{
     if(!email || !password){
       res.render('login', {
         locals: {
+          title: 'Login',
           error: 'Please submit all required fields'
+        },
+        partials: {
+          head: 'partials/head',
+          footer: 'partials/footer'
         }
       })
       return;
@@ -36,7 +41,12 @@ router.post('/', (req, res)=>{
         if(!user){
           res.render('login', {
             locals: {
-              error: 'No user with that email'
+              error: 'No user with that email',
+              title: 'Login'
+            },
+              partials: {
+                head: 'partials/head',
+                footer: 'partials/footer'
             }
           })
           return;
@@ -44,14 +54,18 @@ router.post('/', (req, res)=>{
   
         bcrypt.compare(password, user.password, (err, matched) =>{
           if (matched){
-            // res.send('YOU LOGGED IN')
             req.session.user = user;
             res.redirect('/dashboard');
           } else {
             res.render('login', {
               locals: {
-                error: 'Incorrect password. Please try again.'
-              }
+                error: 'Incorrect password. Please try again.',
+                title: 'Login'
+              },
+              partials: {
+                head: 'partials/head',
+                footer: 'partials/footer'
+            }
             })
           }
           return;
