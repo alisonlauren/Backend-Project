@@ -4,12 +4,16 @@ ${head}
 <body>
 
 
-<div class="container-fluid text-center">
-    <h1>Register Here</h1>
-    <p>We know you can git commit, but can you commit to your fitness? </p>
-    ${ error ? `<em>${error}</em>`: ''}
-    <form action="" method="post"> 
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="input">
+        <h1 class="display-4">Register Here</h1>
+        <p class="lead">We know you can git commit, but can you commit to your workouts?</p>
 
+
+    
+    <form action="" method="post"> 
+    <div class="info">
     <div>
         <label for="fullName">Full Name</label>
         <input type="text" name="fullName" id="fullName" required>
@@ -22,28 +26,17 @@ ${head}
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required>
     </div>
+</div>
     <button type="submit">Register</button>
 </form> 
 
-<div class="row content">
-<div class="col-sm-2 sidenav">
-    <p><a href="#">Link</a></p>
-    <p><a href="#">Link</a></p>
-    <p><a href="#">Link</a></p>
-</div>
-<div class="col-sm-8 text-left"> 
-    
-</div>
-<div class="col-sm-2 sidenav">
-    <div class="well">
-    <p>ADS</p>
-    </div>
-    <div class="well">
-    <p>ADS</p>
-    </div>
+
+
 </div>
 </div>
-</div> 
+
+
+
     ${footer}
 </body>
 </html>
