@@ -1,5 +1,16 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 /* Remove the navbar's default margin-bottom and rounded borders */ 
+
+h1 {
+    font-family: 'Permanent Marker', cursive;
+}
+
+p, h2 {
+    font-family: 'Jockey One', sans-serif;
+    
+}
+
 .navbar {
 margin-bottom: 0;
 border-radius: 0;
@@ -61,7 +72,7 @@ padding: 15px;
   font-weight: bold;
   text-transform: uppercase;
   color: #fff;
-  background: #f37070;
+  background: teal;
   padding: 15px;
   text-align: center;
 }
@@ -87,7 +98,7 @@ padding: 15px;
   font-size: 0.8em;
   font-weight: bold;
   overflow: hidden;
-  color: #ff5d5d;
+  color: blue;
 }
 
 /* [ADD/EDIT EVENT] */

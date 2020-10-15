@@ -122,6 +122,8 @@ show : function (el) {
     container.appendChild(eForm);
 },
 
+
+
 // (D) CLOSE EVENT DOCKET
 close : function () {
     document.getElementById("cal-event").innerHTML = "";
