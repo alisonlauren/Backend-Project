@@ -34,8 +34,8 @@ router.get('/', checkAuth, (req, res)=>{
 })
 
 router.post('/', (req, res)=>{
-    const { type, startTime, endTime, calorie, miles } = req.body;
-    if ( !type || !startTime || !endTime || !calorie || !miles){
+    const { workoutType, startTime, endTime, calorie, miles } = req.body;
+    if ( !workoutType || !startTime || !endTime || !calorie || !miles){
         res.render('dashboard', {
             locals: {
                 user: req.session.user,
@@ -50,7 +50,7 @@ router.post('/', (req, res)=>{
         return;
     }
     db.Workout.create({
-        type: type,
+        type: workoutType,
         data: {
             distance: miles
         },
