@@ -54,7 +54,6 @@ router.post('/', (req, res)=>{
   
         bcrypt.compare(password, user.password, (err, matched) =>{
           if (matched){
-            // res.send('YOU LOGGED IN')
             req.session.user = user;
             res.redirect('/dashboard');
           } else {

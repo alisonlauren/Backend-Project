@@ -38,6 +38,7 @@ router.post('/', (req, res)=>{
     if ( !type || !startTime || !endTime || !calorie || !miles){
         res.render('dashboard', {
             locals: {
+                user: req.session.user,
                 error: "Please submit all required fields",
                 title: "Dashboard"
             },
@@ -57,6 +58,12 @@ router.post('/', (req, res)=>{
         end_time: endTime,
         cal: calorie,
         UserId: req.session.user.id,
+    })
+    .then(newWorkout=>{
+        res.json(newWorkout);
+    })
+    .catch(e=>{
+        res.status(500).json({error: "A database error occurred"});
     })
 })
 

@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 $(document).ready(function(){
     $("#datetimepicker").datetimepicker();
     $("#datetimepicker1").datetimepicker();
-=======
+})
+
 var cal = {
 // (A) PROPERTIES
 mName : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], // Month Names
@@ -165,7 +165,7 @@ for (var i = 0; i < 12; i++) {
     opt.value = i;
     opt.innerHTML = cal.mName[i];
     if (i==nowMth) { opt.selected = true; }
-    console.log(mth)
+    // console.log(mth)
     mth.appendChild(opt);
 }
 
@@ -183,5 +183,4 @@ for (var i = nowYear-10; i<=nowYear+10; i++) {
 // (G4) START - DRAW CALENDAR
 document.getElementById("cal-set").addEventListener("click", cal.list);
 cal.list();
->>>>>>> main
 });
