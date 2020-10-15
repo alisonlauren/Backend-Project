@@ -12,6 +12,7 @@ const app = express();
 // Route Require Section
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
+const dashboardRouter = require('./routes/dashboard');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,6 +60,9 @@ app.use('/login', loginRouter);
 
 // creating register page
 app.use('/register', registerRouter);
+
+// dashboard routes
+app.use('/dashboard', dashboardRouter);
 
 app.listen(3000, function () {
     console.log('Activity Tracker API....');
