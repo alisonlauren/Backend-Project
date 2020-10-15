@@ -113,19 +113,74 @@ show : function (el) {
     // (C2) DRAW EVENT FORM
     var tForm = "<h1>" + (cal.data[cal.sDay] ? "EDIT" : "ADD") + " EVENT</h1>";
     tForm += "<div id='evt-date'>" + cal.sDay + " " + cal.mName[cal.sMth] + " " + cal.sYear + "</div>";
-    tForm += "<textarea id='evt-details' required>" + (cal.data[cal.sDay] ? cal.data[cal.sDay] : "") + "</textarea>";
+    tForm += `<div class="container">
+    <div class="row">
+    <div class='col-sm-6'>
+        <div class="form-group">
+            <select class="form-control" name="workoutType" id="workoutType">
+                <option selected disabled>Select a Type of Workout</option>
+                <option>Cycling</option>
+                <option>Running</option>
+                <!-- <option>Lifting</option> -->
+            </select>
+        </div>
+        <!-- START TIME WO -->
+        <div class="container">
+            <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker'>
+                        <input type='text' name="startTime" class="form-control" />
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- END TIME WO -->
+        <div class="container">
+        <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' name="endTime" class="form-control" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+<!-- CALORIE INPUT -->
+<div>
+    <label for="calorie">Calories Burned</label>
+    <input type="integer" name="calorie" placeholder="305" id="calorie" required>
+</div>
+<!-- MILES COMPLETED -->
+<div>
+    <label for="miles">Miles Completed</label>
+    <input type="integer" name="miles" placeholder="5.5"id="miles" required>
+</div>
+</div>`
     tForm += "<input type='button' value='Close' onclick='cal.close()'/>";
     tForm += "<input type='button' value='Delete' onclick='cal.del()'/>";
-    tForm += "<input type='submit' value='Save'/>";
-
+    tForm += "<button type='submit' value='Save'>Log Workout</button>";
+    
     // (C3) ATTACH EVENT FORM
     var eForm = document.createElement("form");
+    eForm.setAttribute("method", "post");
     eForm.addEventListener("submit", cal.save);
     eForm.innerHTML = tForm;
     var container = document.getElementById("cal-event");
     container.innerHTML = " ";
     container.appendChild(eForm);
 },
+
+
+
 
 // (D) CLOSE EVENT DOCKET
 close : function () {
@@ -136,7 +191,7 @@ close : function () {
 save : function (evt) {
     evt.stopPropagation();
     evt.preventDefault();
-    cal.data[cal.sDay] = document.getElementById("evt-details").value;
+    cal.data[cal.sDay] = document.getElementById("workoutType").value;
     localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, JSON.stringify(cal.data));
     cal.list();
 },
