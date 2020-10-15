@@ -12,10 +12,10 @@ router.get('/', (req, res)=>{
     db.Workout.findAll({
         where: {
             start_time: {
-                [Op.gt]: startDate
+                [Op.gte]: startDate
             },
             end_time: {
-                [Op.lt]: endDate
+                [Op.lte]: endDate
             },
             UserId: req.session.user.id
         }
