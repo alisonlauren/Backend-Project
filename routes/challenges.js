@@ -51,10 +51,25 @@ router.post('/', (req, res)=>{
                 }
             })
             .then(challenge=>{
-                res.redirect('challenges')
+                res.render('challenge', {
+                    locals: {
+                        user: req.session.user,
+                        title: "Challenges",
+                        error: ''
+                    },
+                    partials: {
+                        head:"partials/head",
+                        footer: "partials/footer"
+                    }
+                })
+            })
+            .catch(e=>{
+                console.log(e);
             })
         })
         .catch(e=>{
             console.log(e)
         })
 })
+
+module.exports = router;
