@@ -241,22 +241,25 @@ document.getElementById("cal-set").addEventListener("click", cal.list);
 cal.list();
 });
 
+const getWorkoutsByType = type =>{
+    let today = new Date();
+    
+    let twoWeeksFromNow = today.getDate() - 14;
+    let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);
+    console.log(fullDate)
+    
+    
+    let currentDate = new Date().toISOString().slice(0, 10);
+    console.log(currentDate);
+    // Render user workouts
+    axios
+        .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}`)
+            .then(res=>{
+                console.log(res.data);
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+}
 
-let today = new Date();
-
-let twoWeeksFromNow = today.getDate() - 14;
-let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);
-console.log(fullDate)
-
-
-let currentDate = new Date().toISOString().slice(0, 10);
-console.log(currentDate);
-// Render user workouts
-axios
-    .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}`)
-        .then(res=>{
-            console.log(res.data);
-        })
-        .catch(e=>{
-            console.log(e);
-        })
+getWorkoutsByType("Cycling");
