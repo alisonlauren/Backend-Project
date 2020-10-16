@@ -14,6 +14,7 @@ const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
 const workoutsListRouter = require('./routes/workouts');
+const challengesRouter = require('./routes/challenges');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -67,6 +68,9 @@ app.use('/dashboard', dashboardRouter);
 
 // get all workouts for a user api call
 app.use('/api/workouts', workoutsListRouter);
+
+// challenges routes
+app.use('/challenges', challengesRouter);
 
 app.get('/logout', (req, res) => {
     req.session.user = null;
