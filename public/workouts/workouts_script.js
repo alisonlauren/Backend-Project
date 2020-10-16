@@ -171,10 +171,10 @@ show : function (el) {
     
     // (C3) ATTACH EVENT FORM
     var eForm = document.createElement("form");
-    eForm.setAttribute("method", "post");
-    eForm.setAttribute("action", "");
-    eForm.addEventListener("submit", cal.save);
+    eForm.setAttribute("action", " ");
+    eForm.setAttribute("method", "POST");
     eForm.innerHTML = tForm;
+    eForm.addEventListener("submit", cal.save);
     var container = document.getElementById("cal-event");
     container.innerHTML = " ";
     container.appendChild(eForm);
@@ -253,7 +253,7 @@ let currentDate = new Date().toISOString().slice(0, 10);
 console.log(currentDate);
 // Render user workouts
 axios
-    .get(`/api/workouts?startDate=${currentDate}&endDate=${fullDate}`)
+    .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}`)
         .then(res=>{
             console.log(res.data);
         })
