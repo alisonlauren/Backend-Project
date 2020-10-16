@@ -4,7 +4,7 @@
 
 
 h1 {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Permanent Marker', cursive !important; 
 }
 
 p, h2 {
@@ -49,6 +49,14 @@ padding: 15px;
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center; 
+}
+
+.input1 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    text-align: center;
+
 }
 /* [CONTAINER] */
 #cal-wrap { max-width: 600px; }
