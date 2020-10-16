@@ -5,10 +5,6 @@ const { Op } = require("sequelize");
 
 router.get('/', (req, res)=>{
     const {startDate, endDate, workoutType} = req.query;
-    // res.send({
-    //     start: startDate, 
-    //     end: endDate
-    // });
     if(workoutType !== 'Running' && workoutType !== 'Cycling'){
         res.status(404).json({error: 'Invalid workout type'})
     }
@@ -27,7 +23,8 @@ router.get('/', (req, res)=>{
         }
     })
     .then(workouts =>{
-        if(!workouts){
+        console.log(workouts.length === 0);
+        if(workouts.length === 0){
             res.status(404).json({error: 'No workouts found'})
         }else{
             res.status(200).json(workouts);
