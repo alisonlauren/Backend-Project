@@ -252,14 +252,52 @@ const getWorkoutsByType = type =>{
     let currentDate = new Date().toISOString().slice(0, 10);
     console.log(currentDate);
     // Render user workouts
-    axios
+    return axios
         .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}`)
             .then(res=>{
-                console.log(res.data);
+                return res.data
             })
             .catch(e=>{
                 console.log(e);
             })
 }
 
-getWorkoutsByType("Cycling");
+function returnWorkoutList(workoutData) {
+    // build the html string into the `html` variable
+    const html = `
+        <li data-id="${workoutData.id}">
+            <p data-id="${workoutData.id}" type="submit">Distance: ${workoutData.data.distance}</p>
+            <p data-id="${workoutData.id}" type="submit">Calories Burned: ${workoutData.cal}</p>
+        </li>
+      `;
+    // return the built string back to the invoking function
+    return html;
+}
+const $cyclingPrs = $('#cyclingPrs');
+
+getWorkoutsByType('Cycling')
+    .then(workoutData=>{
+        const htmlArray = workoutData.map(individualWorkout=>{
+            return returnWorkoutList(individualWorkout);
+            // console.log(returnWorkoutList(individualWorkout));
+        })
+        $cyclingPrs.append(htmlArray.join(''));
+    })
+    .catch(e=>{
+        $cyclingPrs.append('<li>There\'s a 404 in your workout history...Git to cycling</li>');
+    })
+
+
+
+const $runningPrs = $('#runningPrs');
+getWorkoutsByType('Running')
+    .then(workoutData=>{
+        const htmlArray = workoutData.map(individualWorkout=>{
+            return returnWorkoutList(individualWorkout);
+            // console.log(returnWorkoutList(individualWorkout));
+        })
+        $runningPrs.append(htmlArray.join(''));
+    })
+    .catch(e=>{
+        $runningPrs.append('<li>There\'s a 404 in your workout history...Git to stepping</li>');
+    })

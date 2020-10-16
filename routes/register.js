@@ -41,16 +41,7 @@ router.post('/', (req, res) => {
             password: hash
         })
         .then((user) => {
-            res.render('login', {
-                locals: {
-                    error: null,
-                    title: "Login"
-                },
-                partials:{
-                    head:"partials/head",
-                    footer:"partials/footer"
-                }
-            })
+            res.redirect('login');
         })
         .catch((e)=>{
             res.render('register', {
