@@ -6,7 +6,7 @@ const { Op } = require("sequelize");
 router.get('/', (req, res)=>{
     const {startDate, endDate, workoutType} = req.query;
     let whereStatement;
-    if(workoutType !== 'Running' && workoutType !== 'Cycling'){
+    if(workoutType !== 'Running' && workoutType !== 'Cycling' && workoutType !== 'All'){
         res.status(404).json({error: 'Invalid workout type'})
     }
     if(workoutType === 'All'){
