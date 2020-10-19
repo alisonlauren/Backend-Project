@@ -2,6 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 
+/* sticky footer */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
 
 h1 {
     font-family: 'Permanent Marker', cursive !important; 
@@ -32,6 +44,7 @@ footer {
 background-color: #555;
 color: white;
 padding: 15px;
+width: 100%;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -44,20 +57,53 @@ padding: 15px;
 }
 
 
-.input {
+.input, .heading {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center; 
 }
 
+
+
 .input1 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center;
-
 }
+
+.pr_records, .card-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bodycenter {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  align-content: center !important;
+}
+
+.formtype, .challengebody {
+  display: flex;
+  justify-self: center;
+  margin-left: 30%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /* [CONTAINER] */
 #cal-wrap { max-width: 600px; }
 
