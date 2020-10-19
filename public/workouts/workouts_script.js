@@ -23,7 +23,7 @@ list : function () {
         startDay = new Date(cal.sYear, cal.sMth, 1).getDay(), // first day of the month
         endDay = new Date(cal.sYear, cal.sMth, daysInMth).getDay(); // last day of the month
 
-    // (B2) LOAD DATA FROM LOCALSTORAGE
+    // (B2) LOAD DATA FROM API.... 
     cal.data = localStorage.getItem("cal-" + cal.sMth + "-" + cal.sYear);
     if (cal.data==null) {
     localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, "{}");
@@ -164,20 +164,24 @@ show : function (el) {
     <label for="miles">Miles Completed</label>
     <input type="integer" name="miles" placeholder="5.5"id="miles" required>
 </div>
+<div class="buttongroup">
+<input type='button' value='Close' onclick='cal.close()'/>
+<input type='button' value='Delete' onclick='cal.del()'/>
+<button id='submit' type='submit' value='Save'>Log Workout</button>
+</div>
 </div>`
-    tForm += "<input type='button' value='Close' onclick='cal.close()'/>";
-    tForm += "<input type='button' value='Delete' onclick='cal.del()'/>";
-    tForm += "<button type='submit' value='Save'>Log Workout</button>";
+
     
     // (C3) ATTACH EVENT FORM
     var eForm = document.createElement("form");
-    eForm.setAttribute("action", " ");
+    eForm.setAttribute("action", "");
     eForm.setAttribute("method", "POST");
     eForm.innerHTML = tForm;
-    eForm.addEventListener("submit", cal.save);
+    // eForm.addEventListener("submit", cal.save);
     var container = document.getElementById("cal-event");
     container.innerHTML = " ";
     container.appendChild(eForm);
+
 },
 
 
@@ -190,11 +194,10 @@ close : function () {
 
 // (E) SAVE EVENT
 save : function (evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
     cal.data[cal.sDay] = document.getElementById("workoutType").value;
     localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, JSON.stringify(cal.data));
     cal.list();
+    return true;
 },
 
 // (F) DELETE EVENT FOR SELECTED DATE

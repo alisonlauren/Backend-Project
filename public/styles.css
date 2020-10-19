@@ -87,11 +87,16 @@ padding: 15px;
   align-content: center !important;
 }
 
-.formtype, .challengebody {
+.formtype {
   display: flex;
   justify-self: center;
-  margin-left: 30%;
+  
 }
+
+
+
+
+
 
 
 
@@ -181,13 +186,13 @@ padding: 15px;
   border: 1px solid #ddd;
   resize: none;
 }
-#cal-event input[type=button], #cal-event input[type=submit] {
+#cal-event input[type=button], #cal-event input[type=submit], #cal-event, #submit {
   padding: 10px;
   margin: 5px;
   font-size: 1.2em;
   border: 0;
   background: #ea4c4c;
-  color: #fff;
+  color: black;
 }
 
 /* [DOES NOT MATTER] */
