@@ -44,14 +44,14 @@ async function loadData(type) {
             .then( (res) =>{
                 if (res.data){
                     res.data.forEach(individualWorkout => {
-                        let date = individualWorkout.start_time.toString().slice(8,10);
-                        if(date.slice(0,1) == 0){
-                            date = date.slice(1,1);
+                        let workOutStartDate = individualWorkout.start_time.toString().slice(8,10);
+                        if(workOutStartDate.slice(0,1) == 0){
+                            workOutStartDate = workOutStartDate.slice(1,1);
                         }
-                        if (returnObject[date]) {
-                            returnObject[date] +=  `\n${individualWorkout.type}`                        
+                        if (returnObject[workOutStartDate]) {
+                            returnObject[workOutStartDate] +=  `\n${individualWorkout.type}`                        
                         } else {
-                            returnObject[date] = individualWorkout.type                      }
+                            returnObject[workOutStartDate] = individualWorkout.type                      }
                     });
                     return returnObject;  
                 } else{
