@@ -36,17 +36,22 @@ async function loadData(type) {
     const getYear = parseInt(document.getElementById("cal-yr").value);
     const month = parseInt(document.getElementById("cal-mth").value);
     console.log(`${getYear}-${month + 1}`);
-    const returnObject = {}
+    const returnObject = {};
+    const order = 'start_date';
     // Render user workouts
     return await axios
-        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}`)
+        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}&order=${order}`)
             .then( (res) =>{
                 if (res.data){
                     res.data.forEach(individualWorkout => {
-                        if (returnObject[individualWorkout.start_time.toString().slice(8,10)]) {
-                            returnObject[individualWorkout.start_time.toString().slice(8,10)] +=  `\n${individualWorkout.type}`                        
+                        let date = individualWorkout.start_time.toString().slice(8,10);
+                        if(date.slice(0,1) == 0){
+                            date = date.slice(1,1);
+                        }
+                        if (returnObject[date]) {
+                            returnObject[date] +=  `\n${individualWorkout.type}`                        
                         } else {
-                            returnObject[individualWorkout.start_time.toString().slice(8,10)] = individualWorkout.type                      }
+                            returnObject[date] = individualWorkout.type                      }
                     });
                     return returnObject;  
                 } else{
@@ -289,10 +294,10 @@ const getWorkoutsByType = type =>{
     let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);    
     
     let currentDate = new Date().toISOString().slice(0, 10);
-
+    const order = 'Miles';
     // Render user workouts
     return axios
-        .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}`)
+        .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}&order=${order}`)
             .then(res=>{
                 return res.data
             })
