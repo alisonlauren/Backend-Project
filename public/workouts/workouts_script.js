@@ -221,7 +221,6 @@ for (var i = 0; i < 12; i++) {
     opt.value = i;
     opt.innerHTML = cal.mName[i];
     if (i==nowMth) { opt.selected = true; }
-    // console.log(mth)
     mth.appendChild(opt);
 }
 
@@ -245,12 +244,10 @@ const getWorkoutsByType = type =>{
     let today = new Date();
     
     let twoWeeksFromNow = today.getDate() - 14;
-    let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);
-    console.log(fullDate)
-    
+    let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);    
     
     let currentDate = new Date().toISOString().slice(0, 10);
-    console.log(currentDate);
+
     // Render user workouts
     return axios
         .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}`)
@@ -279,7 +276,6 @@ getWorkoutsByType('Cycling')
     .then(workoutData=>{
         const htmlArray = workoutData.map(individualWorkout=>{
             return returnWorkoutList(individualWorkout);
-            // console.log(returnWorkoutList(individualWorkout));
         })
         $cyclingPrs.append(htmlArray.join(''));
     })
@@ -294,7 +290,6 @@ getWorkoutsByType('Running')
     .then(workoutData=>{
         const htmlArray = workoutData.map(individualWorkout=>{
             return returnWorkoutList(individualWorkout);
-            // console.log(returnWorkoutList(individualWorkout));
         })
         $runningPrs.append(htmlArray.join(''));
     })
