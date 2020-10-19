@@ -2,6 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 
+/* sticky footer */
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
 
 h1 {
     font-family: 'Permanent Marker', cursive !important; 
@@ -32,6 +44,7 @@ footer {
 background-color: #555;
 color: white;
 padding: 15px;
+width: 100%;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -74,11 +87,18 @@ padding: 15px;
   align-content: center !important;
 }
 
-.formtype {
-  margin: 5px auto !important;
-  margin-left: 280px !important;
-  width: 100% !important;
+.formtype, .challengebody {
+  display: flex;
+  justify-self: center;
+  margin-left: 30%;
 }
+
+
+
+
+
+
+
 
 
 
