@@ -44,20 +44,46 @@ padding: 15px;
 }
 
 
-.input {
+.input, .heading {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center; 
 }
 
+
+
 .input1 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center;
-
 }
+
+.pr_records, .card-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bodycenter {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  align-content: center !important;
+}
+
+.formtype {
+  margin: 5px auto !important;
+  margin-left: 280px !important;
+  width: 100% !important;
+}
+
+
+
+
+
 /* [CONTAINER] */
 #cal-wrap { max-width: 600px; }
 
