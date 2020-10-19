@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
+
 const checkAuth = (req, res, next) => {
     if(req.session.user){
         next();
@@ -48,20 +49,11 @@ router.post('/', (req, res)=>{
                     end_time: endTime,
                     cal: calorie,
                     distance: miles
-                }
+                },
+                is_completed: false
             })
             .then(challenge=>{
-                res.render('challenge', {
-                    locals: {
-                        user: req.session.user,
-                        title: "Challenges",
-                        error: ''
-                    },
-                    partials: {
-                        head:"partials/head",
-                        footer: "partials/footer"
-                    }
-                })
+                res.redirect('./')
             })
             .catch(e=>{
                 console.log(e);

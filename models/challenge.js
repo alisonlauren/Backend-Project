@@ -22,7 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     criteria: {
       allowNull: false,
       type: DataTypes.JSONB
-    }
+    },
+    is_completed: {
+      allowNull: false,
+      defaultVale: false,
+      type: DataTypes.BOOLEAN
+    },
   }, {
     sequelize,
     modelName: 'Challenge',

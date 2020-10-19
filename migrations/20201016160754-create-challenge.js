@@ -16,6 +16,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.JSONB
       },
+      is_completed: {
+        allowNull: false,
+        defaultVale: false,
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

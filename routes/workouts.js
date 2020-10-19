@@ -23,7 +23,6 @@ router.get('/', (req, res)=>{
         }
     })
     .then(workouts =>{
-        console.log(workouts.length === 0);
         if(workouts.length === 0){
             res.status(404).json({error: 'No workouts found'})
         }else{

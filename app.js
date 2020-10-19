@@ -15,6 +15,7 @@ const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
 const workoutsListRouter = require('./routes/workouts');
 const challengesRouter = require('./routes/challenges');
+const challengeApiRouter = require('./routes/challenges_api');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -71,6 +72,9 @@ app.use('/api/workouts', workoutsListRouter);
 
 // challenges routes
 app.use('/challenges', challengesRouter);
+
+// get all workouts for a user api call
+app.use('/api/challenges', challengeApiRouter);
 
 app.get('/logout', (req, res) => {
     req.session.user = null;
