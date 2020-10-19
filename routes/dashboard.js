@@ -54,8 +54,8 @@ router.post('/', (req, res)=>{
         data: {
             distance: miles
         },
-        start_time: startTime,
-        end_time: endTime,
+        start_time: startTime + "-00",
+        end_time: endTime + "-00",
         cal: calorie,
         UserId: req.session.user.id,
     })

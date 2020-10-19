@@ -13,22 +13,22 @@ router.get('/', (req, res)=>{
         whereStatement = {
             where: {
                 start_time: {
-                    [Op.gte]: startDate
+                    [Op.gte]: startDate + " 00:00:00-00"
                 },
                 end_time: {
-                    [Op.lte]: endDate
+                    [Op.lte]: endDate + " 23:59:59-00"
                 },
                 UserId: req.session.user.id
             }
         }
-    } else{
+    } else {
         whereStatement = {
             where: {
                 start_time: {
-                    [Op.gte]: startDate
+                    [Op.gte]: startDate + " 00:00:00-00"
                 },
                 end_time: {
-                    [Op.lte]: endDate
+                    [Op.lte]: endDate + " 23:59:59-00"
                 },
                 type: {
                     [Op.iLike]: workoutType

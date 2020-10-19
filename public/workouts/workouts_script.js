@@ -13,7 +13,7 @@ sYear : 0, // Current selected year
 sMon : false, // Week start on Monday?
 
 // (B) DRAW CALENDAR FOR SELECTED MONTH
-list : function () {
+list : async function () {
     // (B1) BASIC CALCULATIONS - DAYS IN MONTH, START + END DAY
     // Note - Jan is 0 & Dec is 11 in JS.
     // Note - Sun is 0 & Sat is 6
@@ -23,14 +23,49 @@ list : function () {
         startDay = new Date(cal.sYear, cal.sMth, 1).getDay(), // first day of the month
         endDay = new Date(cal.sYear, cal.sMth, daysInMth).getDay(); // last day of the month
 
-    // (B2) LOAD DATA FROM API.... 
-    cal.data = localStorage.getItem("cal-" + cal.sMth + "-" + cal.sYear);
-    if (cal.data==null) {
-    localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, "{}");
-    cal.data = {};
-    } else {
-    cal.data = JSON.parse(cal.data);
-    }
+    // // (B2) LOAD DATA FROM API.... 
+    // cal.data = localStorage.getItem("cal-" + cal.sMth + "-" + cal.sYear);
+    // if (cal.data==null) {
+    // localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, "{}");
+    // cal.data = {};
+    // } else {
+    // cal.data = JSON.parse(cal.data);
+    // }
+
+async function loadData(type) {
+    const getYear = parseInt(document.getElementById("cal-yr").value);
+    const month = parseInt(document.getElementById("cal-mth").value);
+    console.log(`${getYear}-${month + 1}`);
+    const returnObject = {}
+    // Render user workouts
+    return await axios
+        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}`)
+            .then( (res) =>{
+                res.data.forEach(individualWorkout => {
+                    if (returnObject[individualWorkout.start_time.toString().slice(8,10)]) {
+                        returnObject[individualWorkout.start_time.toString().slice(8,10)] +=  `\n${individualWorkout.type}`                        
+                    } else {
+                        returnObject[individualWorkout.start_time.toString().slice(8,10)] = individualWorkout.type                      }
+                });
+                return returnObject;  
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+}
+
+async function responseData() {
+    await loadData('All') 
+    .then( async (response) => {
+        cal.data = {};
+        cal.data = response;
+        console.log(cal.data);
+    }) 
+    ;
+
+}
+await responseData();
+    
 
     // (B3) DRAWING CALCULATIONS
     // Determine the number of blank squares before start of month
