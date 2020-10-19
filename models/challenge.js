@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Challenge.init({
+    is_public:{
+      allowNull: false,
+      defaultValue: false,
+      type: DataTypes.BOOLEAN,
+    },
     type: {
       allowNull: false,
       type: DataTypes.STRING
