@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-
 const checkAuth = (req, res, next) => {
     if(req.session.user){
         next();
@@ -35,7 +34,7 @@ router.get('/', checkAuth, (req, res)=>{
 })
 
 router.post('/', (req, res)=>{
-    const {workoutType, startTime, endTime, calorie, miles} = req.body
+    const {title, description, workoutType, startTime, endTime, calorie, miles} = req.body
     db.User.findOne({
         where: {
             id: req.session.user.id
@@ -45,12 +44,15 @@ router.post('/', (req, res)=>{
             user.createChallenge({
                 type: workoutType,
                 criteria: {
+                    title: title,
+                    description: description,
                     start_time: startTime,
                     end_time: endTime,
                     cal: calorie,
                     distance: miles
                 },
-                is_completed: false
+                is_completed: false,
+                is_public: false
             })
             .then(challenge=>{
                 res.redirect('./')
