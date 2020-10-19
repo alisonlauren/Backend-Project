@@ -21,7 +21,10 @@ router.get('/', (req, res)=>{
     if(workoutType !== 'Running' && workoutType !== 'Cycling' && workoutType !== 'All'){
         res.status(404).json({error: 'Invalid workout type'})
     }
+    // Ternary that checks if the workout type is all, if it isn't then the workout type is 
+    // added to the where statement in the SQL Select call below.
     (workoutType !== 'All') ? (whereStatement['type'] = {[Op.iLike]: workoutType}) : null;
+
     db.Workout.findAll(whereStatement)
     .then(workouts =>{
         if(workouts.length === 0){
