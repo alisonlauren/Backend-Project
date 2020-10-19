@@ -40,9 +40,9 @@ router.get('/', (req, res)=>{
     db.Workout.findAll(whereStatement)
     .then(workouts =>{
         if(workouts.length === 0){
-            res.status(404).json({error: 'No workouts found'})
+            res.json()
         }else{
-            res.status(200).json(workouts);
+            res.json(workouts);
         }
     })
     .catch(e=>{

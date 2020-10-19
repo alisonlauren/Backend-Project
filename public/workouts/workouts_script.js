@@ -41,15 +41,19 @@ async function loadData(type) {
     return await axios
         .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}`)
             .then( (res) =>{
-                res.data.forEach(individualWorkout => {
-                    if (returnObject[individualWorkout.start_time.toString().slice(8,10)]) {
-                        returnObject[individualWorkout.start_time.toString().slice(8,10)] +=  `\n${individualWorkout.type}`                        
-                    } else {
-                        returnObject[individualWorkout.start_time.toString().slice(8,10)] = individualWorkout.type                      }
-                });
-                return returnObject;  
+                if (res.data){
+                    res.data.forEach(individualWorkout => {
+                        if (returnObject[individualWorkout.start_time.toString().slice(8,10)]) {
+                            returnObject[individualWorkout.start_time.toString().slice(8,10)] +=  `\n${individualWorkout.type}`                        
+                        } else {
+                            returnObject[individualWorkout.start_time.toString().slice(8,10)] = individualWorkout.type                      }
+                    });
+                    return returnObject;  
+                } else{
+                    return {};
+                }
             })
-            .catch(e=>{
+            .catch( e => {
                 console.log(e);
             })
 }

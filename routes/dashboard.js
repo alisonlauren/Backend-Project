@@ -1,25 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const checkAuth = require('./checkAuth');
 
-const checkAuth = (req, res, next) => {
-    if(req.session.user){
-        next();
-    }else{
-        res.render('login', {
-            locals: {
-                title: 'Login',
-                error: 'Must be logged in to access profile page'
-              },
-              partials: {
-                head: 'partials/head',
-                footer: 'partials/footer'
-              }
-        });
-    }
-}
-
-router.get('/', checkAuth, (req, res)=>{
+router.get('/', checkAuth, (req, res) => {
+    console.log(req.session.user);
     res.render('dashboard', {
         locals: {
             user: req.session.user,
@@ -59,10 +44,10 @@ router.post('/', (req, res)=>{
         cal: calorie,
         UserId: req.session.user.id,
     })
-    .then(newWorkout=>{
+    .then(newWorkout => {
         res.redirect('/dashboard');
     })
-    .catch(e=>{
+    .catch(e => {
         res.status(500).json({error: "A database error occurred"});
     })
 })
