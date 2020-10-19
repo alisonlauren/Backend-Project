@@ -93,6 +93,22 @@ padding: 15px;
   
 }
 
+.challenge {
+  border: 1px solid black;
+  width: 100%;
+  margin: 5px auto;
+  display: block;
+  padding: 10px !important;
+
+}
+
+.row {
+
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
 
 
 
