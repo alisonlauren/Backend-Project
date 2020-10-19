@@ -72,4 +72,19 @@ router.post('/', (req, res)=>{
         })
 })
 
+// api route that returns a list of challenges that the user has listed into
+router.get('/api/getUserChallenges', (req, res)=>{
+// req.query.sortBy ? const {sortBy} = req.query: null;
+const {sortBy} = req.query;
+    db.Workout.getChallenges({
+        where: {
+            UserId: req.session.user.id,
+            
+        },
+        order: [
+            ''
+        ]
+    })
+})
+
 module.exports = router;
