@@ -20,7 +20,11 @@ router.get('/private', (req, res)=>{
     }
     // Ternary that checks if the workout type is all, if it isn't then the workout type is 
     // added to the where statement in the SQL Select call below.
-    (workoutType !== 'All') ? (whereStatement['type'] = {[Op.iLike]: workoutType}) : null;
+    if(workoutType !== 'All'){ 
+        whereStatement.where.type = {
+            [Op.iLike]: workoutType
+        }
+    }
 
     db.User.findOne({
         where: {
