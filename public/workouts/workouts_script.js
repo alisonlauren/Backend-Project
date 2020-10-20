@@ -31,25 +31,95 @@ list : async function () {
     // } else {
     // cal.data = JSON.parse(cal.data);
     // }
+const getWorkoutsByType = type =>{
+        let today = new Date();
+        
+        let getYear = parseInt(document.getElementById("cal-yr").value);
+        let month = parseInt(document.getElementById("cal-mth").value);
+        if(!getYear || !month){
+            getYear = today.getFullYear();
+            month = today.getMonth();
+        }
+        const order = 'Miles';
+        // Render user workouts
+        return axios
+        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}&order=${order}`)
+                .then(res=>{
+                    return res.data
+                })
+                .catch(e=>{
+                    console.log(e);
+                })
+}
+
+function returnWorkoutList(workoutData) {
+    // build the html string into the `html` variable
+    const html = `
+        <li data-id="${workoutData.id}">
+            <p data-id="${workoutData.id}" type="submit">Distance: ${workoutData.data.distance}</p>
+            <p data-id="${workoutData.id}" type="submit">Calories Burned: ${workoutData.cal}</p>
+        </li>
+      `;
+    // return the built string back to the invoking function
+    return html;
+}
+const $cyclingPrs = $('#cyclingPrs');
+const $runningPrs = $('#runningPrs');
+$cyclingPrs.empty();
+$runningPrs.empty();
+
+getWorkoutsByType('Cycling')
+    .then(workoutData=>{
+        const htmlArray = workoutData.map(individualWorkout=>{
+            return returnWorkoutList(individualWorkout);
+        })
+        $cyclingPrs.append(htmlArray.join(''));
+    })
+    .catch(e=>{
+        $cyclingPrs.append('<li>There\'s a 404 in your workout history...Git to cycling</li>');
+    })
+
+
+
+
+getWorkoutsByType('Running')
+    .then(workoutData=>{
+        const htmlArray = workoutData.map(individualWorkout=>{
+            return returnWorkoutList(individualWorkout);
+        })
+        $runningPrs.append(htmlArray.join(''));
+    })
+    .catch(e=>{
+        $runningPrs.append('<li>There\'s a 404 in your workout history...Git to stepping</li>');
+    })
 
 async function loadData(type) {
     const getYear = parseInt(document.getElementById("cal-yr").value);
     const month = parseInt(document.getElementById("cal-mth").value);
-    console.log(`${getYear}-${month + 1}`);
-    const returnObject = {}
+    // console.log(`${getYear}-${month + 1}`);
+    const returnObject = {};
+    const order = 'start_date';
     // Render user workouts
     return await axios
-        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}`)
+        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}&order=${order}`)
             .then( (res) =>{
-                res.data.forEach(individualWorkout => {
-                    if (returnObject[individualWorkout.start_time.toString().slice(8,10)]) {
-                        returnObject[individualWorkout.start_time.toString().slice(8,10)] +=  `\n${individualWorkout.type}`                        
-                    } else {
-                        returnObject[individualWorkout.start_time.toString().slice(8,10)] = individualWorkout.type                      }
-                });
-                return returnObject;  
+                if (res.data){
+                    res.data.forEach(individualWorkout => {
+                        let workOutStartDate = individualWorkout.start_time.toString().slice(8,10);
+                        if(workOutStartDate.slice(0,1) == 0){
+                            workOutStartDate = workOutStartDate.slice(1,2);
+                        }
+                        if (returnObject[workOutStartDate]) {
+                            returnObject[workOutStartDate] +=  `\n${individualWorkout.type}`                        
+                        } else {
+                            returnObject[workOutStartDate] = individualWorkout.type                      }
+                    });
+                    return returnObject;  
+                } else{
+                    return {};
+                }
             })
-            .catch(e=>{
+            .catch( e => {
                 console.log(e);
             })
 }
@@ -278,59 +348,3 @@ document.getElementById("cal-set").addEventListener("click", cal.list);
 cal.list();
 });
 
-const getWorkoutsByType = type =>{
-    let today = new Date();
-    
-    let twoWeeksFromNow = today.getDate() - 14;
-    let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);    
-    
-    let currentDate = new Date().toISOString().slice(0, 10);
-
-    // Render user workouts
-    return axios
-        .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}`)
-            .then(res=>{
-                return res.data
-            })
-            .catch(e=>{
-                console.log(e);
-            })
-}
-
-function returnWorkoutList(workoutData) {
-    // build the html string into the `html` variable
-    const html = `
-        <li data-id="${workoutData.id}">
-            <p data-id="${workoutData.id}" type="submit">Distance: ${workoutData.data.distance}</p>
-            <p data-id="${workoutData.id}" type="submit">Calories Burned: ${workoutData.cal}</p>
-        </li>
-      `;
-    // return the built string back to the invoking function
-    return html;
-}
-const $cyclingPrs = $('#cyclingPrs');
-
-getWorkoutsByType('Cycling')
-    .then(workoutData=>{
-        const htmlArray = workoutData.map(individualWorkout=>{
-            return returnWorkoutList(individualWorkout);
-        })
-        $cyclingPrs.append(htmlArray.join(''));
-    })
-    .catch(e=>{
-        $cyclingPrs.append('<li>There\'s a 404 in your workout history...Git to cycling</li>');
-    })
-
-
-
-const $runningPrs = $('#runningPrs');
-getWorkoutsByType('Running')
-    .then(workoutData=>{
-        const htmlArray = workoutData.map(individualWorkout=>{
-            return returnWorkoutList(individualWorkout);
-        })
-        $runningPrs.append(htmlArray.join(''));
-    })
-    .catch(e=>{
-        $runningPrs.append('<li>There\'s a 404 in your workout history...Git to stepping</li>');
-    })

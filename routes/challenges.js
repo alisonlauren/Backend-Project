@@ -1,23 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-
-const checkAuth = (req, res, next) => {
-    if(req.session.user){
-        next();
-    }else{
-        res.render('login', {
-            locals: {
-                title: 'Login',
-                error: 'Must be logged in to access profile page'
-              },
-              partials: {
-                head: 'partials/head',
-                footer: 'partials/footer'
-              }
-        });
-    }
-}
+const checkAuth = require('./checkAuth');
 
 router.get('/', checkAuth, (req, res)=>{
     res.render('challenge', {

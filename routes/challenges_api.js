@@ -1,30 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
+const Op = require('sequelize');
 
 // api route that returns a list of challenges that the user has listed into
 router.get('/private', (req, res)=>{
     // req.query.sortBy ? const {sortBy} = req.query: null;
     // const {sortBy} = req.query;
     const {workoutType} = req.query;
-    let whereStatement;
+
+    let whereStatement = {
+        where: {
+            is_completed: false,
+        }
+    }
+
     if(workoutType !== 'Running' && workoutType !== 'Cycling' && workoutType !== 'All'){
         res.status(404).json({error: 'Invalid workout type'})
     }
-    if(workoutType === 'All'){
-        whereStatement = {
-            where: {
-                is_completed: false
-            }
-        }
-    } else{
-        whereStatement = {
-            where: {
-                is_completed: false,
-                type: workoutType
-            }
-        }
-    }
+    // Ternary that checks if the workout type is all, if it isn't then the workout type is 
+    // added to the where statement in the SQL Select call below.
+    (workoutType !== 'All') ? (whereStatement['type'] = {[Op.iLike]: workoutType}) : null;
+
     db.User.findOne({
         where: {
             id: req.session.user.id
