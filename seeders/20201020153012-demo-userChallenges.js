@@ -20,12 +20,6 @@ module.exports = {
           createdAt: new Date,
           updatedAt: new Date
         },
-        {
-          UserId: 1,
-          ChallengeId: 1,
-          createdAt: new Date,
-          updatedAt: new Date
-        }
       ])
   },
 

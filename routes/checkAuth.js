@@ -4,7 +4,8 @@ const checkAuth = async (req, res, next) => {
     if(req.session.user){
         next();
     }else{
-        res.redirect('/login');
+        req.session.returnUrl = req.originalUrl
+        res.redirect(`/login`);
         // await res.render('login', {
         //     locals: {
         //         title: 'Login',

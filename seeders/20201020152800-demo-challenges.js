@@ -21,7 +21,7 @@ module.exports = {
         updatedAt: new Date
       },
       {
-        is_public: false,
+        is_public: true,
         type: 'Running',
         criteria: '{"title": "500 Miles in October", "distance": "500"}',
         is_completed: false,
