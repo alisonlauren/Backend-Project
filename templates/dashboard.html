@@ -1,19 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+
 ${head}
-<body>
 
 
 <div class="container-fluid text-center">
     <h1>Welcome to your profile, ${user.name}</h1>
+    <div class="bodycenter">
     <div id="cal-wrap">
     <!-- [PERIOD SELECTOR] -->
+    
+    
+
     <div id="cal-date">
         <select id="cal-mth"></select>
         <select id="cal-yr"></select>
         <input id="cal-set" type="button" value="SET"/>
     </div>
-    
     <!-- [CALENDAR] -->
     <div id="cal-container"></div>
     
@@ -21,70 +22,13 @@ ${head}
     <div id="cal-event"></div>
     </div>
 
-    <form action="" method="post">
-        <!-- START TIME WO -->
-        <div class="container">
-            <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <select class="form-control" name="workoutType" id="workoutType">
-                        <option selected disabled>Select a Type of Workout</option>
-                        <option>Cycling</option>
-                        <option>Running</option>
-                        <!-- <option>Lifting</option> -->
-                    </select>
-                </div>
-            <!-- START TIME WO -->
-            <div class="container">
-                <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker'>
-                            <input type='text' name="startTime" class="form-control" />
-                            <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <!-- END TIME WO -->
-            <div class="container">
-            <div class="row">
-                <div class='col-sm-6'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' name="endTime" class="form-control" />
-                        <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-        <!-- CALORIE INPUT -->
-        <div>
-            <label for="calorie">Calories Burned</label>
-            <input type="integer" name="calorie" placeholder="305" id="calorie" required>
-        </div>
-        <!-- MILES COMPLETED -->
-        <div>
-            <label for="miles">Miles Completed</label>
-            <input type="integer" name="miles" placeholder="5.5"id="miles" required>
-        </div>
-        <!-- SUBMIT BUTTON -->
-        <div>
-        <button type="submit" class="btn btn-secondary btn-sm">Submit Workout</button>
-        </div>
-        </form>
 
-<div class="d-flex justify-content-center align-items-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
+
+
+
+<div class="card-columns">
+    <div class="pr_records">
+        <div class="col-md-8 sidenav">
             <p>Cycling PR'S </p>
             <ul id="cyclingPrs">
                 
@@ -92,8 +36,8 @@ ${head}
         </div>
     </div>
     
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
+    <div class="pr_records">
+        <div class="col-md-8 sidenav">
             <p>Running PR'S </p>
             <ul id="runningPrs">
                 
@@ -102,11 +46,18 @@ ${head}
     </div>
 </div>
 </div>
-    ${footer}
-    <!-- How we connect front end js with html that we render on the backend -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
-    <script src="./workouts/workouts_script.js"></script>
-</body>
+
+
+
+
+
+
+
+
+<!-- How we connect front end js with html that we render on the backend -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+<script src="./workouts/workouts_script.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <!-- Optional theme -->
@@ -117,5 +68,5 @@ ${head}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+${footer}
 
-</html>

@@ -11,10 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Challenge.belongsToMany(models.User, {through: 'user_challenge'});
+      Challenge.belongsToMany(models.User, {through: 'UserChallenges'});
     }
   };
   Challenge.init({
+    is_public:{
+      allowNull: false,
+      defaultValue: false,
+      type: DataTypes.BOOLEAN,
+    },
     type: {
       allowNull: false,
       type: DataTypes.STRING
@@ -22,7 +27,12 @@ module.exports = (sequelize, DataTypes) => {
     criteria: {
       allowNull: false,
       type: DataTypes.JSONB
-    }
+    },
+    is_completed: {
+      allowNull: false,
+      defaultVale: false,
+      type: DataTypes.BOOLEAN
+    },
   }, {
     sequelize,
     modelName: 'Challenge',

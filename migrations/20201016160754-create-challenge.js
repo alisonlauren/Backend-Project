@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      is_public:{
+        allowNull: false,
+        defaultValue: false,
+        type: Sequelize.BOOLEAN,
+      },
       type: {
         allowNull: false,
         type: Sequelize.STRING
@@ -15,6 +20,11 @@ module.exports = {
       criteria: {
         allowNull: false,
         type: Sequelize.JSONB
+      },
+      is_completed: {
+        allowNull: false,
+        defaultVale: false,
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,

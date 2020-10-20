@@ -13,7 +13,7 @@ sYear : 0, // Current selected year
 sMon : false, // Week start on Monday?
 
 // (B) DRAW CALENDAR FOR SELECTED MONTH
-list : function () {
+list : async function () {
     // (B1) BASIC CALCULATIONS - DAYS IN MONTH, START + END DAY
     // Note - Jan is 0 & Dec is 11 in JS.
     // Note - Sun is 0 & Sat is 6
@@ -23,14 +23,49 @@ list : function () {
         startDay = new Date(cal.sYear, cal.sMth, 1).getDay(), // first day of the month
         endDay = new Date(cal.sYear, cal.sMth, daysInMth).getDay(); // last day of the month
 
-    // (B2) LOAD DATA FROM LOCALSTORAGE
-    cal.data = localStorage.getItem("cal-" + cal.sMth + "-" + cal.sYear);
-    if (cal.data==null) {
-    localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, "{}");
-    cal.data = {};
-    } else {
-    cal.data = JSON.parse(cal.data);
-    }
+    // // (B2) LOAD DATA FROM API.... 
+    // cal.data = localStorage.getItem("cal-" + cal.sMth + "-" + cal.sYear);
+    // if (cal.data==null) {
+    // localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, "{}");
+    // cal.data = {};
+    // } else {
+    // cal.data = JSON.parse(cal.data);
+    // }
+
+async function loadData(type) {
+    const getYear = parseInt(document.getElementById("cal-yr").value);
+    const month = parseInt(document.getElementById("cal-mth").value);
+    console.log(`${getYear}-${month + 1}`);
+    const returnObject = {}
+    // Render user workouts
+    return await axios
+        .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}`)
+            .then( (res) =>{
+                res.data.forEach(individualWorkout => {
+                    if (returnObject[individualWorkout.start_time.toString().slice(8,10)]) {
+                        returnObject[individualWorkout.start_time.toString().slice(8,10)] +=  `\n${individualWorkout.type}`                        
+                    } else {
+                        returnObject[individualWorkout.start_time.toString().slice(8,10)] = individualWorkout.type                      }
+                });
+                return returnObject;  
+            })
+            .catch(e=>{
+                console.log(e);
+            })
+}
+
+async function responseData() {
+    await loadData('All') 
+    .then( async (response) => {
+        cal.data = {};
+        cal.data = response;
+        console.log(cal.data);
+    }) 
+    ;
+
+}
+await responseData();
+    
 
     // (B3) DRAWING CALCULATIONS
     // Determine the number of blank squares before start of month
@@ -164,20 +199,24 @@ show : function (el) {
     <label for="miles">Miles Completed</label>
     <input type="integer" name="miles" placeholder="5.5"id="miles" required>
 </div>
+<div class="buttongroup">
+<input type='button' value='Close' onclick='cal.close()'/>
+<input type='button' value='Delete' onclick='cal.del()'/>
+<button id='submit' type='submit' value='Save'>Log Workout</button>
+</div>
 </div>`
-    tForm += "<input type='button' value='Close' onclick='cal.close()'/>";
-    tForm += "<input type='button' value='Delete' onclick='cal.del()'/>";
-    tForm += "<button type='submit' value='Save'>Log Workout</button>";
+
     
     // (C3) ATTACH EVENT FORM
     var eForm = document.createElement("form");
-    eForm.setAttribute("action", " ");
+    eForm.setAttribute("action", "");
     eForm.setAttribute("method", "POST");
     eForm.innerHTML = tForm;
-    eForm.addEventListener("submit", cal.save);
+    // eForm.addEventListener("submit", cal.save);
     var container = document.getElementById("cal-event");
     container.innerHTML = " ";
     container.appendChild(eForm);
+
 },
 
 
@@ -190,11 +229,10 @@ close : function () {
 
 // (E) SAVE EVENT
 save : function (evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
     cal.data[cal.sDay] = document.getElementById("workoutType").value;
     localStorage.setItem("cal-" + cal.sMth + "-" + cal.sYear, JSON.stringify(cal.data));
     cal.list();
+    return true;
 },
 
 // (F) DELETE EVENT FOR SELECTED DATE
@@ -221,7 +259,6 @@ for (var i = 0; i < 12; i++) {
     opt.value = i;
     opt.innerHTML = cal.mName[i];
     if (i==nowMth) { opt.selected = true; }
-    // console.log(mth)
     mth.appendChild(opt);
 }
 
@@ -245,12 +282,10 @@ const getWorkoutsByType = type =>{
     let today = new Date();
     
     let twoWeeksFromNow = today.getDate() - 14;
-    let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);
-    console.log(fullDate)
-    
+    let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);    
     
     let currentDate = new Date().toISOString().slice(0, 10);
-    console.log(currentDate);
+
     // Render user workouts
     return axios
         .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}`)
@@ -279,7 +314,6 @@ getWorkoutsByType('Cycling')
     .then(workoutData=>{
         const htmlArray = workoutData.map(individualWorkout=>{
             return returnWorkoutList(individualWorkout);
-            // console.log(returnWorkoutList(individualWorkout));
         })
         $cyclingPrs.append(htmlArray.join(''));
     })
@@ -294,7 +328,6 @@ getWorkoutsByType('Running')
     .then(workoutData=>{
         const htmlArray = workoutData.map(individualWorkout=>{
             return returnWorkoutList(individualWorkout);
-            // console.log(returnWorkoutList(individualWorkout));
         })
         $runningPrs.append(htmlArray.join(''));
     })
