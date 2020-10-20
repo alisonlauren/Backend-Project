@@ -93,7 +93,7 @@ padding: 15px;
   
 }
 
-.challenge {
+.challenge, .renderchallenge {
   border: 1px solid black;
   width: 100%;
   margin: 5px auto;
@@ -101,7 +101,6 @@ padding: 15px;
   padding: 10px !important;
 
 }
-
 
 
 .row {
