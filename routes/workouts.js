@@ -29,9 +29,21 @@ router.get('/', (req, res)=>{
     }
     // Ternary that checks if the workout type is all, if it isn't then the workout type is 
     // added to the where statement in the SQL Select call below.
-    (workoutType !== 'All') ? (whereStatement['type'] = {[Op.iLike]: workoutType}) : null;
-    (order !== 'start_date') ? (whereStatement['order'] = [sequelize.json("data.distance"), 'DESC']) : null;
-
+    // (workoutType !== 'All') ? (whereStatement['type'] = {[Op.iLike]: workoutType}) : null;
+    // (order !== 'start_date') ? (whereStatement['order'] = [sequelize.json("data.distance"), 'DESC']) : null;
+    console.log(`\n\n${workoutType}\n\n`);
+    if(workoutType !== 'All'){
+        whereStatement.where.type = {[Op.iLike]: workoutType};
+        whereStatement.limit = 1;
+    }
+    if(order !== 'start_date'){
+        whereStatement.order = [
+            [
+                sequelize.json("data.distance"), "DESC"
+            ]
+        ]
+    }
+    console.log(whereStatement);
     db.Workout.findAll(whereStatement)
     .then(workouts =>{
         if(workouts.length === 0){

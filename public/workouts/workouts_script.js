@@ -35,7 +35,7 @@ list : async function () {
 async function loadData(type) {
     const getYear = parseInt(document.getElementById("cal-yr").value);
     const month = parseInt(document.getElementById("cal-mth").value);
-    console.log(`${getYear}-${month + 1}`);
+    // console.log(`${getYear}-${month + 1}`);
     const returnObject = {};
     const order = 'start_date';
     // Render user workouts
@@ -46,7 +46,7 @@ async function loadData(type) {
                     res.data.forEach(individualWorkout => {
                         let workOutStartDate = individualWorkout.start_time.toString().slice(8,10);
                         if(workOutStartDate.slice(0,1) == 0){
-                            workOutStartDate = workOutStartDate.slice(1,1);
+                            workOutStartDate = workOutStartDate.slice(1,2);
                         }
                         if (returnObject[workOutStartDate]) {
                             returnObject[workOutStartDate] +=  `\n${individualWorkout.type}`                        
@@ -290,6 +290,12 @@ cal.list();
 const getWorkoutsByType = type =>{
     let today = new Date();
     
+    let getYear = parseInt(document.getElementById("cal-yr").value);
+    let month = parseInt(document.getElementById("cal-mth").value);
+    if(!getYear || !month){
+        getYear = today.getFullYear();
+        month = today.getMonth();
+    }
     let twoWeeksFromNow = today.getDate() - 14;
     let fullDate = new Date(today.getFullYear(), today.getMonth(), twoWeeksFromNow).toISOString().slice(0,10);    
     
@@ -297,7 +303,7 @@ const getWorkoutsByType = type =>{
     const order = 'Miles';
     // Render user workouts
     return axios
-        .get(`/api/workouts?startDate=${fullDate}&endDate=${currentDate}&workoutType=${type}&order=${order}`)
+    .get(`/api/workouts?startDate=${getYear}-${month + 1}&endDate=${getYear}-${month + 2}&workoutType=${type}&order=${order}`)
             .then(res=>{
                 return res.data
             })
