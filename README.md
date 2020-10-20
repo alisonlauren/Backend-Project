@@ -11,7 +11,16 @@ Brief Explanation of our project.
 ## **General**
 
 Technology:
-What technologies did we use?
+* Front End:
+  * Bootstrap
+  * jQuery
+  * Axios
+
+* Back End:
+  * Node
+  * Express
+  * Sequelize
+  * es6-Template-Engine 
 
 Project Contributors:
 * Alison Manning [github](https://github.com/alisonlauren) [linkedIn](https://www.linkedin.com/in/alison-manning-9a25391b1/)
