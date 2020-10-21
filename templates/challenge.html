@@ -3,7 +3,8 @@ ${head}
 
     <div class="heading">
     <h1>Challenges</h1>
-    <p>You can't git push this off. Pick a challenge.</p>
+    <p>You can't git push this off. Here you can create a personal or public challenge.</p>
+
 
     <form action="" method="post">
         <!-- START TIME WO -->
@@ -12,20 +13,56 @@ ${head}
                 
             <div class='col-sm-6 challenge'>
                 <div class="form-group">
+                    <!-- CHALLENGE TITLE -->
+                <div>
+                    <label for="title">Challenge Title</label>
+                    <br>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <br>
+                <!-- CHALLENGE DESCRIPTION -->
+                <div>
+                <label for="description">Challenge Description</label>
+                <br>
+                <!-- <textarea rows="4" cols="50" name="description" id="description">
+                </textarea> -->
+                <input type="text" name="description" id="description">
+                </div>
+                <br>
+                <!-- public or private -->
+                <select class="form-control" name="publicOrPrivate" id="publicOrPrivate">
+                        
+                    <option selected disabled>Would You Like this Challenge to be Personal or Public?</option>
+                    <option>Personal</option>
+                    <option>Public</option>
+
+                    
+                </select>
+                <br>
+
+                    
+                <!-- select workout -->
+                
                     <select class="form-control" name="workoutType" id="workoutType">
+                        
                         <option selected disabled>Select a Workout Challenge Type</option>
                         <option>Cycling</option>
                         <option>Running</option>
-                        <!-- <option>Lifting</option> -->
+
+                        
                     </select>
                 </div>
+
+            
+                
             <!-- START TIME WO -->
+            <br>
             <div class="container">
                 <div class="row">
                 <div class='col-sm-6'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker'>
-                            <input type='text' name="startTime" class="form-control" />
+                            <input type='text' name="startTime" placeholder="Goal Start Date" class="form-control" />
                             <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -40,7 +77,7 @@ ${head}
                 <div class='col-sm-6'>
                     <div class="form-group">
                         <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' name="endTime" class="form-control" />
+                        <input type='text' name="endTime" placeholder="Goal End Date" class="form-control" />
                         <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -49,23 +86,23 @@ ${head}
                 </div>
             </div>
             </div>
-        </div>
-        </div>
-        </div>
+        
+        
 
-        <div class="calmil">
+        
         <!-- CALORIE INPUT -->
         <div>
-            <label for="calorie">Calories Burned</label>
-            <input type="integer" name="calorie" placeholder="305" id="calorie" required>
+            <label for="calorie">Calories Burned Total</label>
+            <input type="integer" name="calorie" id="calorie" required>
         </div>
         <!-- MILES COMPLETED -->
         <div>
             <div class="miles">
             <label for="miles">Miles Completed</label>
-            <input type="integer" name="miles" placeholder="5.5"id="miles" required>
+            <input type="integer" name="miles" id="miles" required>
             </div>
         </div>
+        <br>
         <!-- SUBMIT BUTTON -->
         <div>
             <button type="submit" class="btn btn-secondary btn-sm">Create Challenge</button>
@@ -73,6 +110,36 @@ ${head}
         </form>
     </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Public Challenges -->
+<div style="text-align: center;">
+    <h1>Public Challenges</h1>
+    <p>Hey ${user.name}, git pull yourself together.</p>
+</div>
+<ul class="renderchallenge" style="text-align:center" id="public">
+</ul>
+
+
+<!-- USER PENDINING CHALLENGES -->
+<div style="text-align: center;">
+    <h1>Current Challenges</h1>
+    <p>Hey ${user.name}, don't forget to git merge these into your day.</p>
+</div>
+<ul class="renderchallenge" style="text-align:center" id="pending">
+</ul>
+
+<!-- COMPLETED HISTORY -->
+<div style="text-align: center;">
+    <h1>Completed Challenges</h1>
+    <p> $ git checkout completedWorkoutBranch</p>
+</div>
+<ul class="renderchallenge" style="text-align:center" id="completed">
+</ul>
+
 
 
 

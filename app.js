@@ -30,19 +30,15 @@ app.use(session({
 store.sync();
 
 app.use(express.static('./public'));
+// app.use((req, res, next)=>{
+//     console.log(req.originalUrl);
+//     console.log(req.session.returnUrl);
+//     next();
+// })
 
 app.engine('html', es6Renderer);
 app.set('views', 'templates');
 app.set('view engine', 'html');
-
-
-// function checkAuth(req, res, next) {
-// if (req.session.user) {
-//     next();
-// } else {
-//     res.redirect('/login');
-// }
-// }
 
 // creating route for home
 app.get('/', (req, res) => {
@@ -77,7 +73,7 @@ app.use('/challenges', challengesRouter);
 app.use('/api/challenges', challengeApiRouter);
 
 app.get('/logout', (req, res) => {
-    req.session.user = null;
+    req.session.destroy();
     res.redirect('/login');
 })
 

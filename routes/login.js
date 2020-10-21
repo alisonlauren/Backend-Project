@@ -55,7 +55,10 @@ router.post('/', (req, res)=>{
         bcrypt.compare(password, user.password, (err, matched) =>{
           if (matched){
             req.session.user = user;
-            res.redirect('/dashboard');
+            const{ returnUrl } = req.session;
+            req.session.returnUrl = null;
+            console.log(returnUrl ? returnUrl : '/');
+            res.redirect(returnUrl ? returnUrl : '/');
           } else {
             res.render('login', {
               locals: {
