@@ -58,7 +58,6 @@ router.get('/', (req, res)=>{
         }
     }
 
-    let secondWhere = {};
     if(workoutType !== 'Running' && workoutType !== 'Cycling' && workoutType !== 'All' && option !== 'Private' && option  !== 'Public'){
         res.status(404).json({error: 'Invalid workout/option type'})
     }
@@ -68,13 +67,16 @@ router.get('/', (req, res)=>{
         whereStatement.where.type = {
             [Op.iLike]: workoutType
         }
+        secondWhere.where.id = req.session.user.id;
     }
     if(option !== 'Private'){
         whereStatement.where.is_public = true;
         secondWhere.where.id = req.session.user.id;
     }
 
-    db.User.findOne({secondWhere})
+    db.User.findOne({
+        where: {id : req.session.user.id}
+    })
     .then(user=>{
         user.getChallenges(whereStatement)
         .then(challenges => {
