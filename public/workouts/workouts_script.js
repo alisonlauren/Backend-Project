@@ -220,7 +220,7 @@ show : function (el) {
     tForm += "<div id='evt-date'>" + cal.sDay + " " + cal.mName[cal.sMth] + " " + cal.sYear + "</div>";
     tForm += `<div class="container">
     <div class="row">
-    <div class='col-sm-6'>
+    <div class='col-sm-6 center-block'>
         <div class="form-group">
             <select class="form-control" name="workoutType" id="workoutType">
                 <option selected disabled>Select a Type of Workout</option>
