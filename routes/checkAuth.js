@@ -5,7 +5,16 @@ const checkAuth = async (req, res, next) => {
         next();
     }else{
         req.session.returnUrl = req.originalUrl
-        res.redirect(`/login`);
+        console.log('\n\nPrevented Access');
+        console.log('original URL ' , req.originalUrl);
+        console.log('Session saved URL ', req.session.returnUrl);
+        req.session.save((e)=>{
+            if(e){
+                console.log(e);
+            }
+            console.log('\n\nSESSION IS SAVED\n\n')
+            res.redirect(`/login`);
+        })
         // await res.render('login', {
         //     locals: {
         //         title: 'Login',
