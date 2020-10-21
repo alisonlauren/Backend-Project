@@ -14,20 +14,20 @@ ${head}
             <div class='col-sm-6 challenge'>
                 <div class="form-group">
                     <!-- CHALLENGE TITLE -->
-                <div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
                     <label for="title">Challenge Title</label>
                     <br>
                     <input type="text" name="title" id="title" required>
-                </div>
+                
                 <br>
                 <!-- CHALLENGE DESCRIPTION -->
-                <div>
+                
                 <label for="description">Challenge Description</label>
                 <br>
                 <!-- <textarea rows="4" cols="50" name="description" id="description">
                 </textarea> -->
                 <input type="text" name="description" id="description">
-                </div>
+            </div>
                 <br>
                 <!-- public or private -->
                 <select class="form-control" name="publicOrPrivate" id="publicOrPrivate">
@@ -91,20 +91,20 @@ ${head}
 
         
         <!-- CALORIE INPUT -->
-        <div>
+        <div style="display: flex; justify-content: center;">
             <label for="calorie">Calories Burned Total</label>
             <input type="integer" name="calorie" id="calorie" required>
         </div>
         <!-- MILES COMPLETED -->
-        <div>
+        <div style="display: flex; justify-content: center;">
             <div class="miles">
-            <label for="miles">Miles Completed</label>
+            <label for="miles">Miles Completed Total</label>
             <input type="integer" name="miles" id="miles" required>
             </div>
         </div>
         <br>
         <!-- SUBMIT BUTTON -->
-        <div>
+        <div style="display: flex; justify-content: center;">
             <button type="submit" class="btn btn-secondary btn-sm">Create Challenge</button>
         </div>
         </form>

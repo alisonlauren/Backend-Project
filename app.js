@@ -77,6 +77,6 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
 })
 
-app.listen(3000, function () {
+app.listen(3001, function () {
     console.log('Activity Tracker API....');
 });
