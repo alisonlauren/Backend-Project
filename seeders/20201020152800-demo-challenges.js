@@ -15,7 +15,7 @@ module.exports = {
       {
         is_public: true,
         type: 'Cycling',
-        criteria: '{"title": "1000 Miles in October", "distance": "1000"}',
+        criteria: '{"title": "1000 Miles in October", "description":"Complete 1000 miles cycling in October", "distance": "1000"}',
         is_completed: false,
         createdAt: new Date,
         updatedAt: new Date
@@ -23,7 +23,7 @@ module.exports = {
       {
         is_public: true,
         type: 'Running',
-        criteria: '{"title": "500 Miles in October", "distance": "500"}',
+        criteria: '{"title": "500 Miles in October", "description":"Complete 500 miles running in October", "distance": "500"}',
         is_completed: false,
         createdAt: new Date,
         updatedAt: new Date

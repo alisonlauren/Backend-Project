@@ -71,7 +71,7 @@ const returnPublicChallengeLi = challengeData => {
         <li data-id="${challengeData.id}">
             <h4 data-id="${challengeData.id}">${challengeData.criteria.title}</h4>
             ${challengeData.criteria.description ? `<p data-id=${challengeData.id}>${challengeData.criteria.description}</p>` : ''}
-            <button id='submit' type='submit' data-id=${challengeData.id}>Join</button>
+            <button id='submit' type='submit' class="join-button" data-id=${challengeData.id}>Join</button>
         </li>
       `;
     // return the built string back to the invoking function
@@ -119,8 +119,11 @@ getCompletedChallenges()
     })
 
 document.addEventListener('click', (e) => {
-    const id = e.target.dataset.id;
-    console.log(id);
-    // pass the id to the `deleteTodo()` function
-    addUserToChallenge(id)
+    if(e.target.classList.contains('join-button')){
+        const id = e.target.dataset.id;
+        console.log(id);
+        // pass the id to the `deleteTodo()` function
+        addUserToChallenge(id)
+        location.reload();
+    }
 });

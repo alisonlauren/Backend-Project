@@ -52,13 +52,18 @@ router.post('/', (req, res)=>{
           return;
         }
   
-        bcrypt.compare(password, user.password, (err, matched) =>{
+      bcrypt.compare(password, user.password, async (err, matched) =>{
           if (matched){
             req.session.user = user;
             const{ returnUrl } = req.session;
             req.session.returnUrl = null;
-            console.log(returnUrl ? returnUrl : '/');
-            res.redirect(returnUrl ? returnUrl : '/');
+            // console.log(returnUrl ? returnUrl : '/');
+            // res.redirect(returnUrl ? returnUrl : '/');
+            if(returnUrl){
+              res.redirect(returnUrl)
+            }else{
+              res.redirect('./')
+            }
           } else {
             res.render('login', {
               locals: {
