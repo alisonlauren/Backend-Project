@@ -29,8 +29,9 @@ Technology and Frameworks Used:
 * Back End:
   * ![Node](https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white)
   * ![Express](https://img.shields.io/badge/express.js%20-%23404d59.svg?&style=for-the-badge)
+  * ![Postgrres](https://img.shields.io/badge/postgres-%23316192.svg?&style=for-the-badge&logo=postgresql&logoColor=white)
   * Sequelize
-  * es6-Template-Engine 
+  * es6-Template-Engine
 
 Project Contributors:
 * Alison Manning [github](https://github.com/alisonlauren) [linkedIn](https://www.linkedin.com/in/alison-manning-9a25391b1/)
