@@ -271,7 +271,7 @@ show : function (el) {
 </div>
 <div class="buttongroup">
 <input type='button' value='Close' onclick='cal.close()'/>
-<input type='button' value='Delete' onclick='cal.del()'/>
+
 <button id='submit' type='submit' value='Save'>Log Workout</button>
 </div>
 </div>`
