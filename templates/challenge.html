@@ -22,14 +22,15 @@ ${head}
                 <br>
                 <!-- CHALLENGE DESCRIPTION -->
                 <div>
-                <label for="title">Challenge Description</label>
+                <label for="description">Challenge Description</label>
                 <br>
-                <textarea rows="4" cols="50" name="comment" form="usrform">
-                    </textarea>
+                <!-- <textarea rows="4" cols="50" name="description" id="description">
+                </textarea> -->
+                <input type="text" name="description" id="description">
                 </div>
                 <br>
                 <!-- public or private -->
-                <select class="form-control" name="workoutType" id="workoutType">
+                <select class="form-control" name="publicOrPrivate" id="publicOrPrivate">
                         
                     <option selected disabled>Would You Like this Challenge to be Personal or Public?</option>
                     <option>Personal</option>
@@ -112,29 +113,30 @@ ${head}
 </div>
 </div>
 
+<!-- Public Challenges -->
+<div style="text-align: center;">
+    <h1>Public Challenges</h1>
+    <p>Hey ${user.name}, git pull yourself together.</p>
+</div>
+<ul class="renderchallenge" style="text-align:center" id="public">
+</ul>
+
+
 <!-- USER PENDINING CHALLENGES -->
 <div style="text-align: center;">
     <h1>Current Challenges</h1>
     <p>Hey ${user.name}, don't forget to git merge these into your day.</p>
 </div>
-<div class="renderchallenge" style="text-align:center">
-    <p>challenge one</p>
-    <p>challenge two</p>
-    <p>challenge three</p>
-
-</div>
+<ul class="renderchallenge" style="text-align:center" id="pending">
+</ul>
 
 <!-- COMPLETED HISTORY -->
 <div style="text-align: center;">
     <h1>Completed Challenges</h1>
     <p> $ git checkout completedWorkoutBranch</p>
 </div>
-<div class="renderchallenge" style="text-align:center">
-    <p>challenge one</p>
-    <p>challenge two</p>
-    <p>challenge three</p>
-
-</div>
+<ul class="renderchallenge" style="text-align:center" id="completed">
+</ul>
 
 
 

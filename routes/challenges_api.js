@@ -93,22 +93,22 @@ router.get('/', (req, res)=>{
     })
 })
 
-// Need form to test ********** 
-router.post('/', (req, res)=>{
-    const { challengeId } = req.body
+// Need form to test
+router.post('/:id', (req, res)=>{
+    const { id } = req.params
     db.User.findOne({
         where: {
             id: req.session.user.id
         }
     })
-        .then(user=>{
-            user.addChallenge({
+        .then(user => {
+            db.Challenge.findOne({
                 where: {
-                    id: challengeId
+                    id: id
                 }
             })
-            .then(challenge=>{
-                res.redirect('./')
+            .then(foundChallenge=>{
+                user.addChallenge(foundChallenge)
             })
             .catch(e=>{
                 console.log(e);

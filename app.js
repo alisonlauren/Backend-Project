@@ -30,6 +30,11 @@ app.use(session({
 store.sync();
 
 app.use(express.static('./public'));
+// app.use((req, res, next)=>{
+//     console.log(req.originalUrl);
+//     console.log(req.session.returnUrl);
+//     next();
+// })
 
 app.engine('html', es6Renderer);
 app.set('views', 'templates');
