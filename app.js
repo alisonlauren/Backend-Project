@@ -31,8 +31,8 @@ store.sync();
 
 app.use(express.static('./public'));
 app.use((req, res, next)=>{
-    console.log(req.originalUrl);
-    console.log(req.session.returnUrl);
+    console.log('original URL ' , req.originalUrl);
+    console.log('Session saved URL ', req.session.returnUrl);
     next();
 })
 
@@ -73,10 +73,13 @@ app.use('/challenges', challengesRouter);
 app.use('/api/challenges', challengeApiRouter);
 
 app.get('/logout', (req, res) => {
+    console.log('\n\nLogged Out\n\n')
     req.session.destroy();
     res.redirect('/login');
 })
 
-app.listen(3001, function () {
-    console.log('Activity Tracker API....');
+
+app.listen(process.env.PORT || 3000, function () {
+    console.log(`Activity Tracker API @ ${process.env.PORT || 3000}`);
+
 });
