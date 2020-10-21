@@ -42,13 +42,32 @@ Project Contributors:
 ## **Getting Started**
 
 Project tutorial:
+1. Register to the site.
+2. Login
+3. Add a workout 
+4. Create new public or private challenge
+5. Join already created public challenges
+
 * Include gifs
   
-Explain how the project works:
-* Include some code snippets
+<!-- Explain how the project works:
+* Include some code snippets -->
+
+<hr>
 
 ## **Description and Requirements**
-
+* Our team was challenged with creating a fullstack project that showcases our newfound backend skills as well as our front-end knowledge.
+* Front-end Req:
+  * The app needed to implement responsive web design techniques.
+  * The goal of this project was mostly centered around the backend development...that being said, we still wanted our users to have a great visual experience using GitFit.
+  * We were allowed to use our preference of front-end frameworks.
+* Backend Req:
+  * To use Express for the HTTP framework
+  * Use a view engine for our templating
+  * Use PostgreSQL for our Database
+    * Must have atleast three tables.
+      * Where two of the tables are related (i.e. foreign keys)
+  
 
 
 ## **Lessons Learned**
