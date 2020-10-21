@@ -54,16 +54,25 @@ router.post('/', (req, res)=>{
   
       bcrypt.compare(password, user.password, async (err, matched) =>{
           if (matched){
-            req.session.user = user;
-            const{ returnUrl } = req.session;
-            req.session.returnUrl = null;
-            // console.log(returnUrl ? returnUrl : '/');
-            // res.redirect(returnUrl ? returnUrl : '/');
-            if(returnUrl){
-              res.redirect(returnUrl)
-            }else{
-              res.redirect('./')
-            }
+            
+            req.session.reload((e)=>{
+              if(e){
+                console.log(e)
+              }
+              req.session.user = user;
+              const{ returnUrl } = req.session;
+              // console.log(returnUrl ? returnUrl : '/');
+              // res.redirect(returnUrl ? returnUrl : '/');
+              if(returnUrl){
+                console.log('ITS NOT NULL ', returnUrl, req.session.returnUrl)
+                res.redirect(returnUrl)
+                req.session.returnUrl = null;
+              }else{
+                console.log('ITS FALSEY')
+                res.redirect('/')
+              }
+            })
+            
           } else {
             res.render('login', {
               locals: {
