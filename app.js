@@ -78,6 +78,6 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
 })
 
-app.listen(3000, function () {
-    console.log('Activity Tracker API....');
+app.listen(process.env.PORT || 3000, function () {
+    console.log(`Activity Tracker API @ ${process.env.PORT || 3000}`);
 });
