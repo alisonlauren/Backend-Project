@@ -43,13 +43,12 @@ Project Contributors:
 ## **Getting Started**
 
 Project tutorial:
-1. Register to the site.
+1. Register to the site
 2. Login
 3. Add a workout 
 4. Create new public or private challenge
 5. Join already created public challenges
-
-* Include gifs
+![](gitfit.gif)
   
 <!-- Explain how the project works:
 * Include some code snippets -->
